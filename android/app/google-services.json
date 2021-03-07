@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "348921071268",
+    "project_id": "kineticsfactoryapp",
+    "storage_bucket": "kineticsfactoryapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348921071268:android:ac807519b54a346f740831",
+        "android_client_info": {
+          "package_name": "com.example.kineticsfactory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348921071268-3ea7n9dv79oktscbn95kaafj1ohr7vpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcaqzhsq9a8cgP70hJbdreFzjYzyViJ8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348921071268-3ea7n9dv79oktscbn95kaafj1ohr7vpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
