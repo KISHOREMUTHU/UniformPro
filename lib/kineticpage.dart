@@ -24,19 +24,19 @@ class _KineticsPageState extends State<KineticsPage> {
   @override
   void initState() {
     super.initState();
-    nameController =  TextEditingController();
-    dressController =  TextEditingController();
-    shoulderController =  TextEditingController();
+    nameController = TextEditingController();
+    dressController = TextEditingController();
+    shoulderController = TextEditingController();
     chestController =  TextEditingController();
     handController =  TextEditingController();
-    shirtlengthController =  TextEditingController();
+    shirtlengthController = TextEditingController();
     pantController =  TextEditingController();
     seatController =  TextEditingController();
 
 
   }
 
-  var firestoreDb = FirebaseFirestore.instance.collection('board').snapshots(
+  var firestoreDb = FirebaseFirestore.instance.collection('praveenmaster').snapshots(
       includeMetadataChanges: true,
                  );
 
@@ -120,11 +120,12 @@ class _KineticsPageState extends State<KineticsPage> {
                 autofocus: true,
                 autocorrect: true,
                 decoration : InputDecoration(
-                    hintText: 'Shoulder Length : '
+                    hintText: 'Shirt Length : '
                 ),
-                controller : shoulderController,
+                controller : shirtlengthController,
               ),
             ),
+
             Expanded(
               child : TextField(
                 keyboardType: TextInputType.numberWithOptions(
@@ -133,9 +134,9 @@ class _KineticsPageState extends State<KineticsPage> {
                 autofocus: true,
                 autocorrect: true,
                 decoration : InputDecoration(
-                    hintText: 'Chest Length : '
+                    hintText: 'Shoulder Length : '
                 ),
-                controller : chestController,
+                controller : shoulderController,
               ),
             ),
             Expanded(
@@ -151,6 +152,7 @@ class _KineticsPageState extends State<KineticsPage> {
                 controller : handController,
               ),
             ),
+
             Expanded(
               child : TextField(
                 keyboardType: TextInputType.numberWithOptions(
@@ -159,9 +161,9 @@ class _KineticsPageState extends State<KineticsPage> {
                 autofocus: true,
                 autocorrect: true,
                 decoration : InputDecoration(
-                    hintText: 'Shirt Length : '
+                    hintText: 'Chest Length : '
                 ),
-                controller : shirtlengthController,
+                controller : chestController,
               ),
             ),
             SizedBox(height : 10),
@@ -224,7 +226,7 @@ class _KineticsPageState extends State<KineticsPage> {
             child : Text('Save'),
             onPressed: (){
               if(nameController.text.isNotEmpty && dressController.text.isNotEmpty && shoulderController.text.isNotEmpty && handController.text.isNotEmpty && chestController.text.isNotEmpty && shirtlengthController.text.isNotEmpty && pantController.text.isNotEmpty && seatController.text.isNotEmpty  ){
-                FirebaseFirestore.instance.collection('board').add({
+                FirebaseFirestore.instance.collection('praveenmaster').add({
                   "name" : nameController.text,
                   "dress" : dressController.text,
                   "shoulder" : shoulderController.text,          
@@ -249,7 +251,10 @@ class _KineticsPageState extends State<KineticsPage> {
                   seatController.clear();
                 }).catchError((error )=> print('Error'));
               }
-              
+              else {
+                Navigator.pop(context);
+
+              }
             },
           ),
 

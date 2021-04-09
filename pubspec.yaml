@@ -33,6 +33,12 @@ dependencies:
   firebase_storage: ^7.0.0
   firebase_core: ^0.7.0
   font_awesome_flutter: ^8.11.0
+  share: ^0.6.5+4
+  google_sign_in: ^4.5.6
+  firebase_auth: ^0.20.0
+  rxdart: ^0.20.0
+  provider: ^4.3.3
+  firebase_database: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +64,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/karategi.jpg
+    - assets/stanlysensei.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

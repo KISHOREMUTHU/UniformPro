@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:share/share.dart';
 
 class CustomCard extends StatelessWidget {
   final QuerySnapshot snapshot;
@@ -42,7 +43,7 @@ class CustomCard extends StatelessWidget {
     var dateFormatted = new DateFormat('EEEE , MMM d , y').format(timeToDate);
 
     return Column(
-      children: 
+      children:
       [
         Container(
           padding: EdgeInsets.all(10.0),
@@ -134,7 +135,11 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Student Name : '
+                                                         labelText: 'Student Name   ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                         "
                                                      ),
                                                      controller : nameController,
                                                    ),
@@ -144,7 +149,13 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Dress Type : '
+                                                         labelText: 'Dress Type        ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                         "
+
+
                                                      ),
                                                      controller : dressController,
                                                    ),
@@ -164,7 +175,31 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Shoulder Length : '
+                                                         labelText: 'Shirt Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
+                                                     ),
+                                                     controller : shirtlengthController,
+                                                   ),
+                                                 ),
+
+                                                 Expanded(
+                                                   child : TextField(
+                                                     keyboardType: TextInputType.numberWithOptions(
+                                                       decimal : true,
+                                                     ),
+                                                     autofocus: true,
+                                                     autocorrect: true,
+                                                     decoration : InputDecoration(
+                                                         labelText: 'Shoulder Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
                                                      ),
                                                      controller : shoulderController,
                                                    ),
@@ -177,20 +212,12 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Chest Length : '
-                                                     ),
-                                                     controller : chestController,
-                                                   ),
-                                                 ),
-                                                 Expanded(
-                                                   child : TextField(
-                                                     keyboardType: TextInputType.numberWithOptions(
-                                                       decimal : true,
-                                                     ),
-                                                     autofocus: true,
-                                                     autocorrect: true,
-                                                     decoration : InputDecoration(
-                                                         hintText: 'Hand Length : '
+                                                         labelText: 'Hand Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
                                                      ),
                                                      controller : handController,
                                                    ),
@@ -203,11 +230,17 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Shirt Length : '
+                                                         labelText: 'Chest Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
                                                      ),
-                                                     controller : shirtlengthController,
+                                                     controller : chestController,
                                                    ),
                                                  ),
+
                                                  SizedBox(height : 10),
 
                                                  Text (
@@ -225,7 +258,12 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Pant Length : '
+                                                         labelText: 'Pant Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
                                                      ),
                                                      controller : pantController,
                                                    ),
@@ -239,7 +277,12 @@ class CustomCard extends StatelessWidget {
                                                      autofocus: true,
                                                      autocorrect: true,
                                                      decoration : InputDecoration(
-                                                         hintText: 'Seat Length : '
+                                                         labelText: 'Seat Length  ',
+                                                         labelStyle: TextStyle(
+                                                           fontSize : 19,
+                                                         ),
+                                                         prefixText : "                            "
+
                                                      ),
                                                      controller : seatController,
                                                    ),
@@ -270,7 +313,7 @@ class CustomCard extends StatelessWidget {
                                                  child : Text('Update'),
                                                  onPressed: (){
                                                    if(nameController.text.isNotEmpty && dressController.text.isNotEmpty && shoulderController.text.isNotEmpty && handController.text.isNotEmpty && chestController.text.isNotEmpty && shirtlengthController.text.isNotEmpty && pantController.text.isNotEmpty && seatController.text.isNotEmpty  ){
-                                                      FirebaseFirestore.instance.collection('board').doc(docId).update(  {
+                                                      FirebaseFirestore.instance.collection('praveenmaster').doc(docId).update(  {
                                                         "name" : nameController.text,
                                                         "dress" : dressController.text,
                                                         "shoulder" : shoulderController.text,
@@ -307,9 +350,11 @@ class CustomCard extends StatelessWidget {
                      SizedBox(width : 10),
                      IconButton (icon : Icon(FontAwesomeIcons.trashAlt),iconSize : 25,color: Colors.white,
                      onPressed: () async {
-                       await FirebaseFirestore.instance.collection('board').doc(docId).delete();
+                       await FirebaseFirestore.instance.collection('praveenmaster').doc(docId).delete();
                      },),
-                     SizedBox(width : 140),
+
+
+                     SizedBox(width : 40),
                      MaterialButton(
                        color: Colors.white,
                        child: Text("See details", style : TextStyle(
@@ -320,7 +365,15 @@ class CustomCard extends StatelessWidget {
                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ShowDetails(context , index)));
 
                        },                     ),
-
+                     SizedBox(width: 10),
+                     MaterialButton(
+                       child : Text('Share',
+                       style : TextStyle(
+                         color : Colors.grey,
+                       ),),
+                       color : Colors.white,
+                       onPressed:(){ Sharing(context,index);}
+                     ),
                    ],
                  ),
               ],
@@ -331,327 +384,338 @@ class CustomCard extends StatelessWidget {
       ],
     );
   }
+   void Sharing(BuildContext context , int index){
+    final RenderBox  box = context.findRenderObject();
+   final String text = '''Uniform details of ${snapshot.docs[index]['name']} \n\n Student Name : ${snapshot.docs[index]['name']} \n Dress Type : ${snapshot.docs[index]['dress']} \n\n Shirt Details : \n\n Shirt Length : ${snapshot.docs[index]['shirtlength']} \n Shoulder Length : ${snapshot.docs[index]['shoulder']} \n Hand Length : ${snapshot.docs[index]['hand']} \n Chest Length : ${snapshot.docs[index]['chest']} \n\n Pant Details : \n\n Pant Length : ${snapshot.docs[index]['pant']} \n Seat Length : ${snapshot.docs[index]['seat']} \n''';
+     Share.share(
+       text,
+       subject: 'Uniform details of ${snapshot.docs[index]['name']}',
+         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+     );
+   }
        Widget ShowDetails (BuildContext context , int index){
                  return Scaffold(
                    appBar : AppBar (
                      title : Text('Student Details'),
                      backgroundColor: Colors.redAccent,
                    ),
-                   body : Container (
-                     child : Column (
-                       children: [
+                   body : SingleChildScrollView(
+                     child: Container (
+                       child : Column (
+                         children: [
 
-                         Padding(
-                           padding: const EdgeInsets.all(20.0),
-                           child: Container(
-                             width: 400,
-                             height : 140,
-                             decoration : BoxDecoration(
-                               borderRadius: BorderRadius.circular(10.0),
-                               color : Colors.grey[400],
+                           Padding(
+                             padding: const EdgeInsets.all(20.0),
+                             child: Container(
+                               width: 400,
+                               height : 140,
+                               decoration : BoxDecoration(
+                                 borderRadius: BorderRadius.circular(10.0),
+                                 color : Colors.grey[400],
 
-                             ),
-                             child : Column (
-                               children: [
-                                 SizedBox(height : 20),
+                               ),
+                               child : Column (
+                                 children: [
+                                   SizedBox(height : 20),
 
-                                 Row(
-                                   mainAxisAlignment: MainAxisAlignment.start,
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Student Name : ',
-                                       style : TextStyle(
-                                         fontFamily: 'Tinos',
-                                         fontSize: 20,
-                                         color : Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                       ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['name'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Row(
-                                   mainAxisAlignment: MainAxisAlignment.start,
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Dress Type     : ',
+                                   Row(
+                                     mainAxisAlignment: MainAxisAlignment.start,
+                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Student Name  ',
                                          style : TextStyle(
                                            fontFamily: 'Tinos',
                                            fontSize: 20,
                                            color : Colors.white,
                                            fontWeight: FontWeight.bold,
                                          ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['dress'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //color : Colors.white,
-                                           fontWeight: FontWeight.bold,
                                          ),
                                        ),
-                                     ),
-                                   ],
-                                 ),
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['name'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
 
-                               ],
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                   Row(
+                                     mainAxisAlignment: MainAxisAlignment.start,
+                                     crossAxisAlignment: CrossAxisAlignment.start,
+
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Dress Type      ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['dress'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+
+                                 ],
+                               ),
                              ),
                            ),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.all(20.0),
-                           child: Container(
-                             width: 400,
-                             height : 220,
-                             decoration : BoxDecoration(
-                               borderRadius: BorderRadius.circular(10.0),
-                               color : Colors.grey[400],
+                           Padding(
+                             padding: const EdgeInsets.all(20.0),
+                             child: Container(
+                               width: 400,
+                               height : 220,
+                               decoration : BoxDecoration(
+                                 borderRadius: BorderRadius.circular(10.0),
+                                 color : Colors.grey[400],
 
-                             ),
+                               ),
 
-                             //color : Colors.blueGrey,
-                             child : Column (
-                               children: [
-                                 SizedBox(height: 10,),
+                               //color : Colors.blueGrey,
+                               child : Column (
+                                 children: [
+                                   SizedBox(height: 10,),
 
-                                 Row(
-                                   mainAxisAlignment: MainAxisAlignment.center,
-                                   crossAxisAlignment : CrossAxisAlignment.center,
-                                   children: [
-                                     Text (" Shirt Details",
-                                       style : TextStyle(
-                                         fontFamily: 'Tinos',
-                                         fontSize: 27,
-                                       //  color : Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                       ),
-
-                                     )
-                                   ],
-                                 ),
-                                 SizedBox(height: 15,),
-
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Shoulder Length : ',
+                                   Row(
+                                     mainAxisAlignment: MainAxisAlignment.center,
+                                     crossAxisAlignment : CrossAxisAlignment.center,
+                                     children: [
+                                       Text (" Shirt Details",
                                          style : TextStyle(
                                            fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['shoulder'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                          // color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Hand Length      : ',
-                                         style : TextStyle(
-                                         fontFamily: 'Tinos',
-                                         fontSize: 20,
-                                         color : Colors.white,
-                                         fontWeight: FontWeight.bold,
-                                       ),
-                                       ),
-                                     ),
-
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['hand'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
+                                           fontSize: 27,
                                          //  color : Colors.white,
                                            fontWeight: FontWeight.bold,
                                          ),
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Chest Length     : ',
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
+
+                                       )
+                                     ],
+                                   ),
+                                   SizedBox(height: 15,),
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Shirt Length          ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
                                              color : Colors.white,
-                                           fontWeight: FontWeight.bold,
+                                             fontWeight: FontWeight.bold,
+                                           ),
                                          ),
                                        ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['chest'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //  color : Colors.white,
-                                           fontWeight: FontWeight.bold,
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['shirtlength'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //  color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
                                          ),
                                        ),
-                                     ),
-                                   ],
-                                 ),
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Shirt Length      : ',
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                             color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['shirtlength'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //  color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-
-
-
-
-                               ],
-                             ),
-                           ),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.all(20.0),
-                           child: Container(
-                            // padding: const EdgeInsets.all(20.0),
-
-                             width: 400,
-                             height : 170,
-                             decoration : BoxDecoration(
-                               borderRadius: BorderRadius.circular(10.0),
-                               color : Colors.grey[400],
-
-                             ),
-
-                             //    color : Colors.blueGrey,
-                             child : Column (
-                               children: [
-                                 SizedBox(height: 10,),
-                                 Text (" Pant Details",
-                                   style : TextStyle(
-                                     fontFamily: 'Tinos',
-                                     fontSize: 27,
-                                     //  color : Colors.white,
-                                     fontWeight: FontWeight.bold,
+                                     ],
                                    ),
 
-                                 ),
-                                 SizedBox(height: 15,),
-
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text('Pant Length : ',
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['pant'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //  color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Row(
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text ('Seat Length : ',
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Shoulder Length   ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
                                              color : Colors.white,
-                                           fontWeight: FontWeight.bold,
+                                             fontWeight: FontWeight.bold,
+                                           ),
                                          ),
                                        ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                                       child: Text(snapshot.docs[index]['seat'],
-                                         style : TextStyle(
-                                           fontFamily: 'Tinos',
-                                           fontSize: 20,
-                                           //  color : Colors.white,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ),
-                                   ],
-                                 ),
 
-                               ],
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['shoulder'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                            // color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Chest Length        ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                               color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['chest'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //  color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Hand Length        ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['hand'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //  color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+
+
+
+
+
+                                 ],
+                               ),
                              ),
                            ),
-                         ),
+                           Padding(
+                             padding: const EdgeInsets.all(20.0),
+                             child: Container(
+                              // padding: const EdgeInsets.all(20.0),
 
-                       ],
+                               width: 400,
+                               height : 170,
+                               decoration : BoxDecoration(
+                                 borderRadius: BorderRadius.circular(10.0),
+                                 color : Colors.grey[400],
+
+                               ),
+
+                               //    color : Colors.blueGrey,
+                               child : Column (
+                                 children: [
+                                   SizedBox(height: 10,),
+                                   Text (" Pant Details",
+                                     style : TextStyle(
+                                       fontFamily: 'Tinos',
+                                       fontSize: 27,
+                                       //  color : Colors.white,
+                                       fontWeight: FontWeight.bold,
+                                     ),
+
+                                   ),
+                                   SizedBox(height: 15,),
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text('Pant Length         ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['pant'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //  color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                   Row(
+                                     children: [
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text ('Seat Length          ',
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                               color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Text(snapshot.docs[index]['seat'],
+                                           style : TextStyle(
+                                             fontFamily: 'Tinos',
+                                             fontSize: 20,
+                                             //  color : Colors.white,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+
+                                 ],
+                               ),
+                             ),
+                           ),
+
+                         ],
+                       ),
                      ),
                    ),
                  );
