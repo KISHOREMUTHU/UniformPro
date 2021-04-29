@@ -36,9 +36,15 @@ dependencies:
   share: ^0.6.5+4
   google_sign_in: ^4.5.6
   firebase_auth: ^0.20.0
-  rxdart: ^0.20.0
+
   provider: ^4.3.3
   firebase_database: ^6.0.0
+  http: ^0.12.2
+  url_launcher: ^5.5.0
+  simple_url_preview: ^0.1.10
+  webview_flutter: ^1.0.7
+
+
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +71,7 @@ flutter:
   assets:
     - assets/karategi.jpg
     - assets/stanlysensei.jpg
+    - assets/web_hi_res_512.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
